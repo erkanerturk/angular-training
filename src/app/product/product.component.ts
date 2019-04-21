@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Product } from './product';
 
 import { AlertifyService } from '../services/alertify.service';
@@ -15,10 +16,16 @@ export class ProductComponent implements OnInit {
   title: string = 'Ürün Listesi'
   products: Product[]
 
-  constructor(private alertifyService: AlertifyService, private productService: ProductService) { }
+  constructor(
+    private alertifyService: AlertifyService,
+    private productService: ProductService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(data => this.products = data)
+    this.activatedRoute.params.subscribe(params => {
+      this.productService.getProducts(params["categoryId"]).subscribe(data => this.products = data)
+    })
   }
 
   addToCart(product: Product) {
