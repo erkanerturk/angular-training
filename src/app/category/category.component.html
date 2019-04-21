@@ -1,0 +1,9 @@
+<h3>{{ title }}</h3>
+
+<div class="list-group">
+  <a class="list-group-item active">Tüm Ürünler</a>
+</div>
+
+<div *ngFor="let category of categories" class="list-group">
+  <a class="list-group-item">{{ category.name }}</a>
+</div>
