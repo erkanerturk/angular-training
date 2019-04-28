@@ -11,10 +11,13 @@ import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { ProductAddForms1Component } from './product/product-add-forms1/product-add-forms1.component';
 import { ProductAddForms2Component } from './product/product-add-forms2/product-add-forms2.component';
+import { LoginComponent } from './login/login.component';
 
 import { ProductFilterPipe } from './product/product-filter.pipe';
 
 import { AlertifyService } from './services/alertify.service';
+import { AccountService } from './services/account.service';
+import { LoginGuard } from './login/login.guard';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { AlertifyService } from './services/alertify.service';
     ProductComponent,
     ProductFilterPipe,
     ProductAddForms1Component,
-    ProductAddForms2Component
+    ProductAddForms2Component,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,7 @@ import { AlertifyService } from './services/alertify.service';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [AlertifyService],
+  providers: [AlertifyService, AccountService, LoginGuard],
   bootstrap: [AppComponent],
   exports: [ProductFilterPipe]
 })
